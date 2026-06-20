@@ -1,0 +1,207 @@
+/* ===== SERIES PAGE — shared styles for all product series pages =====
+   Used by every series page (ludo-promo, ludo-prime, and any new series).
+   Edit once here to restyle every series page at once. */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Poppins', sans-serif; background: #f0f6ff; color: #1e293b; }
+
+/* HEADER */
+.lb-header {
+  background: linear-gradient(135deg, #003fa3, #005bea, #1a7fff);
+  padding: 32px 24px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.lb-header::before {
+  content: '';
+  position: absolute;
+  width: 400px; height: 400px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 50%;
+  top: -150px; right: -100px;
+}
+.lb-header::after {
+  content: '';
+  position: absolute;
+  width: 250px; height: 250px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 50%;
+  bottom: -80px; left: -60px;
+}
+.back-btn {
+  position: absolute;
+  top: 20px; left: 20px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.3s;
+  z-index: 10;
+}
+.back-btn:hover { background: rgba(255,255,255,0.25); }
+.lb-logo { height: 48px; margin: 0 auto 16px; display: block; }
+.lb-header h1 { color: #fff; font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; letter-spacing: -1px; }
+.lb-header h1 span { color: #7dd3fc; }
+.lb-header p { color: rgba(255,255,255,0.8); margin-top: 10px; font-size: 1rem; }
+.lb-badges { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+.lb-badge {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #fff;
+  padding: 5px 16px;
+  border-radius: 50px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+/* GRID */
+.lb-container { max-width: 1180px; margin: 0 auto; padding: 48px 24px 64px; }
+.lb-section-title { text-align: center; margin-bottom: 36px; }
+.lb-section-title h2 { font-size: 1.7rem; font-weight: 800; color: #003fa3; }
+.lb-section-title p { color: #64748b; margin-top: 6px; }
+
+/* search / filter row on series page */
+.lb-toolbar {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+.lb-search {
+  flex: 1;
+  min-width: 200px;
+  max-width: 360px;
+  padding: 10px 18px;
+  border-radius: 50px;
+  border: 1.5px solid #c7dcff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.88rem;
+  outline: none;
+  background: #fff;
+}
+.lb-search:focus { border-color: #005bea; }
+
+.lb-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 24px;
+}
+.lb-empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: #64748b;
+  font-size: 0.95rem;
+  display: none;
+}
+.lb-empty.show { display: block; }
+
+/* CARD */
+.lb-card {
+  background: linear-gradient(135deg, #e0eeff, #c7dcff);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,91,234,0.10);
+  border: 1px solid #e0eeff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+.lb-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 36px rgba(0,91,234,0.18);
+}
+.lb-card-img {
+  background: #fff;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.lb-card-img i.fallback-icon {
+  font-size: 3rem;
+  color: #cbd9f0;
+}
+.lb-prod-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 12px;
+}
+.lb-card-num {
+  position: absolute;
+  top: 10px; left: 12px;
+  background: #005bea;
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 50px;
+}
+.lb-card-body { padding: 18px; }
+.lb-card-body h3 { font-size: 0.98rem; font-weight: 700; color: #003fa3; margin-bottom: 6px; }
+.lb-card-footer { display: flex; justify-content: space-between; align-items: center; }
+.lb-enquire {
+  padding: 6px 16px;
+  background: #005bea;
+  color: #fff;
+  border-radius: 50px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.3s;
+  border: none;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+}
+.lb-enquire:hover { background: #003fa3; }
+.lb-details {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-bottom: 14px;
+  font-size: 0.82rem;
+  color: #475569;
+}
+.lb-price { font-size: 1.1rem; font-weight: 800; color: #005bea; }
+
+/* FOOTER */
+.lb-footer { background: #003fa3; color: rgba(255,255,255,0.75); text-align: center; padding: 20px; font-size: 0.84rem; }
+.lb-footer a { color: #7dd3fc; text-decoration: none; }
+
+@media (max-width: 768px) {
+  .lb-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .lb-card-img { height: 160px; }
+  .lb-container { padding: 32px 16px 48px; }
+  .lb-header { padding: 28px 16px 40px; }
+  .lb-header h1 { font-size: 1.8rem; }
+  .back-btn { font-size: 0.78rem; padding: 6px 14px; }
+  .lb-badges { gap: 8px; }
+  .lb-badge { font-size: 0.72rem; padding: 4px 12px; }
+}
+@media (max-width: 480px) {
+  .lb-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .lb-card-img { height: 130px; }
+  .lb-card-body { padding: 12px; }
+  .lb-card-body h3 { font-size: 0.88rem; }
+  .lb-details { font-size: 0.76rem; }
+  .lb-price { font-size: 0.98rem; }
+  .lb-enquire { padding: 5px 12px; font-size: 0.72rem; }
+  .lb-card-num { font-size: 0.7rem; }
+  .lb-header h1 { font-size: 1.5rem; }
+  .lb-search { max-width: 100%; }
+}
+@media (max-width: 360px) {
+  .lb-grid { grid-template-columns: 1fr; }
+}
