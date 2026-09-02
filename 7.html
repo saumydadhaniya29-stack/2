@@ -1,0 +1,465 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LUDO PRIME Series – FlowGem</title>
+  <link rel="icon" type="image/png" href="image/.LOGO.png" />
+  <link rel="shortcut icon" href="image/.LOGO.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Poppins', sans-serif; background: #f5f7fa; color: #111827; }
+
+    /* HEADER */
+    .lb-header {
+      background:
+        radial-gradient(circle at 18% 18%, rgba(15, 42, 74, 0.12), transparent 28%),
+        radial-gradient(circle at 84% 12%, rgba(200, 151, 58, 0.22), transparent 24%),
+        linear-gradient(135deg, #ffffff 0%, #f5f7fa 52%, #e8eef5 100%);
+      padding: 32px 24px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 5px solid #c8973a;
+    }
+    .lb-header::before {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      background: rgba(15,42,74,0.08);
+      border-radius: 50%;
+      top: -150px; right: -100px;
+    }
+    .lb-header::after {
+      content: '';
+      position: absolute;
+      width: 250px; height: 250px;
+      background: rgba(200,151,58,0.16);
+      border-radius: 50%;
+      bottom: -80px; left: -60px;
+    }
+    .back-btn {
+      position: absolute;
+      top: 20px; left: 20px;
+      background: rgba(15,42,74,0.1);
+      border: 1px solid rgba(15,42,74,0.2);
+      color: #0f2a4a;
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.3s;
+      z-index: 10;
+    }
+    .back-btn:hover { background: rgba(15,42,74,0.16); }
+    .lb-logo { height: 42px; width: auto; display: inline-block; vertical-align: middle; margin-right: 12px; border-radius: 6px; }
+    .lb-header-title { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
+    .lb-brand { display: block; font-size: 0.72rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: rgba(15,42,74,0.64); margin-bottom: 6px; }
+    .lb-logo-word {
+      display: inline-flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: clamp(8px, 1.4vw, 180px);
+      line-height: 0.9;
+      white-space: nowrap;
+    }
+    .lb-logo-ludo {
+      color: #c8973a;
+      font-size: clamp(3.2rem, 5vw, 6.5rem);
+      font-weight: 650;
+      letter-spacing: 0;
+    }
+    .lb-logo-prime {
+      color:#808080;
+      font-size: clamp(3.2rem, 5vw, 6.5rem);
+      font-weight: 500;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      transform: translateY(0.0em);
+    }
+    .lb-header p { color: #475569; margin-top: 10px; font-size: 1rem; }
+    .lb-badges { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+    .lb-badge {
+      background: rgba(15,42,74,0.08);
+      border: 1px solid rgba(15,42,74,0.14);
+      color: #0f2a4a;
+      padding: 5px 16px;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    /* GRID */
+    .lb-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 48px 24px 64px;
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      background:
+        linear-gradient(135deg, rgba(200, 151, 58, 0.16) 0 12%, transparent 12% 100%),
+        radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.18), transparent 28%),
+        radial-gradient(circle at 88% 12%, rgba(200, 151, 58, 0.18), transparent 24%),
+        linear-gradient(135deg, #060f1e 0%, #0f2a4a 48%, #081c33 100%);
+    }
+    .lb-container::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      opacity: 0.22;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.35) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.35) 1px, transparent 1px);
+      background-size: 34px 34px;
+      mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+    }
+    .lb-container::after {
+      content: '';
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      right: -160px;
+      bottom: -190px;
+      z-index: -1;
+      border-radius: 50%;
+      border: 42px solid rgba(200, 151, 58, 0.18);
+    }
+    .lb-section-title {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .lb-section-title h2 { font-size: 1.7rem; font-weight: 800; color: #fcfcfd; }
+    .lb-section-title p { color: #c8973a; margin-top: 6px; }
+
+    .lb-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    /* CARD */
+    .lb-card {
+      background: linear-gradient(135deg, #eaf0f8, #d4e0f0);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(15,42,74,0.10);
+      border: 2px solid #c8973a;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    .lb-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 36px rgba(15,42,74,0.16);
+    }
+    .lb-card-img {
+      background: #ffffff;
+      height: 260px;
+      padding: 18px;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .lb-card-img svg { display: none; }
+    .lb-prod-img {
+      width: 100%;
+      height: 100%;
+      max-width: none;
+      object-fit: contain;
+      position: relative;
+      z-index: 1;
+      transform: scale(0.86);
+      transform-origin: center;
+    }
+    .lb-card-num {
+      position: absolute;
+      top: 10px; left: 12px;
+      background: #0f2a4a;
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 50px;
+      z-index: 5;
+      box-shadow: 0 4px 10px rgba(15, 42, 74, 0.28);
+    }
+    .lb-card-body { padding: 18px; }
+    .lb-card-body h3 { font-size: 0.98rem; font-weight: 700; color: #0f2a4a; margin-bottom: 6px; }
+    .lb-card-body p { font-size: 0.84rem; color: #64748b; line-height: 1.6; margin-bottom: 14px; }
+    .lb-card-footer { display: flex; justify-content: space-between; align-items: center; }
+    .lb-code { font-size: 0.75rem; color: #94a3b8; font-weight: 600; }
+    .lb-enquire {
+      padding: 6px 16px;
+      background: #0f2a4a;
+      color: #fff;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    .lb-enquire:hover { background: #060f1e; }
+    .lb-details {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      margin-bottom: 14px;
+      font-size: 0.82rem;
+      color: #475569;
+    }
+    .lb-price {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #c8973a;
+    }
+
+    /* WATER ANIMATION */
+    @keyframes flowDown {
+      0%   { transform: translateY(0); opacity: 0.9; }
+      100% { transform: translateY(22px); opacity: 0; }
+    }
+    .water-stream .drop { animation: flowDown 1.1s ease-in infinite; }
+    .water-stream .d1 { animation-delay: 0s; }
+    .water-stream .d2 { animation-delay: 0.35s; }
+    .water-stream .d3 { animation-delay: 0.7s; }
+    @keyframes rainFall {
+      0%   { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(28px); opacity: 0; }
+    }
+    .rain-drops .rdrop { animation: rainFall 0.9s linear infinite; }
+    .rain-drops .r1 { animation-delay: 0s; }
+    .rain-drops .r2 { animation-delay: 0.15s; }
+    .rain-drops .r3 { animation-delay: 0.3s; }
+    .rain-drops .r4 { animation-delay: 0.45s; }
+    .rain-drops .r5 { animation-delay: 0.6s; }
+    .rain-drops .r6 { animation-delay: 0.75s; }
+
+    /* FOOTER */
+    .lb-footer { background: #060f1e; color: rgba(255,255,255,0.75); text-align: center; padding: 20px; font-size: 0.84rem; }
+    .lb-footer a { color: #c8973a; text-decoration: none; }
+
+    @media (max-width: 768px) {
+      .lb-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .lb-card-img {
+      background: #ffffff;
+      height: 205px;
+      padding: 10px;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+      .lb-prod-img { width: 100%; height: 100%; max-width: none; transform: scale(1.16); }
+      .lb-container { padding: 32px 16px 48px; }
+      .lb-header { padding: 28px 16px 40px; }
+      .lb-logo-word { gap: 8px; }
+      .lb-logo-ludo { font-size: clamp(2.7rem, 15vw, 4.4rem); }
+      .lb-logo-prime { font-size: clamp(1.25rem, 7vw, 2.1rem); }
+      .back-btn { font-size: 0.78rem; padding: 6px 14px; }
+      .lb-badges { gap: 8px; }
+      .lb-badge { font-size: 0.72rem; padding: 4px 12px; }
+    }
+    @media (max-width: 480px) {
+      .lb-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .lb-card-img {
+      background: #ffffff;
+      height: 165px;
+      padding: 8px;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+      .lb-prod-img { width: 100%; height: 100%; max-width: none; transform: scale(1.14); }
+      .lb-card-body { padding: 12px; }
+      .lb-card-body h3 { font-size: 0.88rem; }
+      .lb-details { font-size: 0.76rem; }
+      .lb-price { font-size: 0.98rem; }
+      .lb-enquire { padding: 5px 12px; font-size: 0.72rem; }
+      .lb-card-num { top: 7px; left: 8px; font-size: 0.62rem; padding: 3px 8px; z-index: 6; }
+      .lb-logo-ludo { font-size: clamp(2.35rem, 15vw, 3.3rem); }
+      .lb-logo-prime { font-size: clamp(1.05rem, 7vw, 1.65rem); }
+    }
+    @media (max-width: 360px) {
+      .lb-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="lb-header">
+  <a href="1.html" class="back-btn"> Back</a>
+  <div class="lb-header-title">
+    <p class="lb-brand">FlowGem</p>
+    <h1 class="lb-logo-word"><span class="lb-logo-ludo">CLASSIC</span><span class="lb-logo-prime">-P</span></h1>
+  </div>
+  <p>Premium PTMT Bib Cock & Tap Collection All 5 Exclusive Variants</p>
+  <div class="lb-badges">
+    <span class="lb-badge"><i class="fa-solid fa-shield-halved"></i> 36 Month Warranty</span>
+    <span class="lb-badge"><i class="fa-solid fa-leaf"></i> Lead-Free PTMT</span>
+    <span class="lb-badge"><i class="fa-solid fa-medal"></i> ISO Certified</span>
+    <span class="lb-badge"><i class="fa-solid fa-droplet"></i> Water Saving</span>
+  </div>
+</div>
+
+<!-- PRODUCT GRID -->
+<div class="lb-container">
+  <div class="lb-section-title">
+    <h2>PRODUCTS</h2>
+    <p>Tap any product to send an enquiry directly on WhatsApp</p>
+  </div>
+  <div class="lb-grid">
+
+    <!-- 1 -->
+    <div class="lb-card" onclick="enquire('Bib Cock - LPRO-101 - 45° - ₹384')">
+      <div class="lb-card-img">
+        <span class="lb-card-num">CLSP-401</span>
+        <img src="image/ALL PRODUCTS/CLASSIC PTMT/01.png"  class="lb-prod-img" />
+      </div>
+      <div class="lb-card-body">
+        <h3>Bib Cock</h3>
+        <div class="lb-details">
+          <span><b>Code:</b> CLSP-401</span>
+          <span><b>S. Box:</b> 41 &nbsp;|&nbsp; <b>M. Box:</b> 246</span>
+        </div>
+        <div class="lb-card-footer">
+          <span class="lb-price">₹258/-</span>
+          <a class="lb-enquire">Enquire</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="lb-card" onclick="enquire('Bib Cock - LPRO-102 - 90° - ₹384')">
+      <div class="lb-card-img">
+        <span class="lb-card-num">CLSP-402</span>
+            <img src="image/ALL PRODUCTS/CLASSIC PTMT/02.png" class="lb-prod-img"/>
+          </div>
+      <div class="lb-card-body">
+        <h3> Long Body Bib Cock</h3>
+        <div class="lb-details">
+          <span><b>Code:</b> CLSP-402</span>
+          <span><b>S. Box:</b> 30 &nbsp;|&nbsp; <b>M. Box:</b> 180</span>
+        </div>
+        <div class="lb-card-footer">
+          <span class="lb-price">₹286/-</span>
+          <a class="lb-enquire">Enquire</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="lb-card" onclick="enquire('Long Body Bib Cock - LPRO-103 - 45° - ₹440')">
+      <div class="lb-card-img">
+        <span class="lb-card-num">CLSP-403</span>
+        <img src="image/ALL PRODUCTS/CLASSIC PTMT/03.png" class="lb-prod-img" />
+      </div>
+      <div class="lb-card-body">
+        <h3>Angle Cock</h3>
+        <div class="lb-details">
+          <span><b>Code:</b> CLSP-403</span>
+          <span><b>S. Box:</b> 60 &nbsp;|&nbsp; <b>M. Box:</b> 120</span>
+        </div>
+        <div class="lb-card-footer">
+          <span class="lb-price">₹244/-</span>
+          <a class="lb-enquire">Enquire</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="lb-card" onclick="enquire('Long Body Bib Cock - LPRO-104 - 90° - ₹440')">
+      <div class="lb-card-img">
+        <span class="lb-card-num">CLSP-404</span>
+        <img src="image/ALL PRODUCTS/CLASSIC PTMT/04.png"  class="lb-prod-img" />
+      </div>
+      <div class="lb-card-body">
+        <h3>Washing Machine Bib Cock</h3>
+        <div class="lb-details">
+          <span><b>Code:</b> CLSP-404</span>
+          <span><b>S. Box:</b> 41 &nbsp;|&nbsp; <b>M. Box:</b> 246</span>
+        </div>
+        <div class="lb-card-footer">
+          <span class="lb-price">₹438/-</span>
+          <a class="lb-enquire">Enquire</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="lb-card" onclick="enquire('Angle Cock - LPRO-105 - ₹330')">
+      <div class="lb-card-img">
+        <span class="lb-card-num">CLSP-405</span>
+        <img src="image/ALL PRODUCTS/CLASSIC PTMT/0.png"  class="lb-prod-img" />
+      </div>
+      <div class="lb-card-body">
+        <h3>Nozzle Bib Cock</h3>
+        <div class="lb-details">
+          <span><b>Code:</b> CLSP-405</span>
+          <span><b>S. Box:</b> 41 &nbsp;|&nbsp; <b>M. Box:</b> 246</span>
+        </div>
+        <div class="lb-card-footer">
+          <span class="lb-price">₹425/-</span>
+          <a class="lb-enquire">Enquire</a>
+        </div>
+      </div>
+    </div>
+
+    
+  </div><!-- end lb-grid -->
+
+</div><!-- end lb-container -->
+
+<div class="lb-footer">
+  <p>&copy; 2026 FlowGem Industries. All rights reserved. | <a href="1.html">Back to Website</a></p>
+</div>
+
+<script>
+  const lightbox = document.createElement('div');
+  lightbox.style.cssText = 'display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out;';
+  lightbox.innerHTML = '<img id="lbImg" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,0.6);object-fit:contain;" /><div style="position:absolute;top:18px;right:24px;color:#fff;font-size:2.2rem;cursor:pointer;font-weight:900;" onclick="this.parentNode.style.display=\'none\';document.body.style.overflow=\'\'">✕</div>';
+  document.body.appendChild(lightbox);
+  lightbox.addEventListener('click', function(e){ if(e.target===lightbox){lightbox.style.display='none';document.body.style.overflow='';} });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape'){lightbox.style.display='none';document.body.style.overflow='';} });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.lb-card').forEach(function(card) {
+      card.removeAttribute('onclick');
+      card.style.cursor = 'default';
+      var img = card.querySelector('.lb-prod-img');
+      if (img) {
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', function(e) {
+          e.stopPropagation();
+          document.getElementById('lbImg').src = img.src;
+          lightbox.style.display = 'flex';
+          document.body.style.overflow = 'hidden';
+        });
+      }
+      var btn = card.querySelector('.lb-enquire');
+      if (btn) {
+        var h3 = card.querySelector('h3');
+        var code = card.querySelector('.lb-card-num');
+        var price = card.querySelector('.lb-price');
+        var product = (h3?h3.textContent:'') + (code?' - '+code.textContent:'') + (price?' - '+price.textContent:'');
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          enquire(product.trim());
+        });
+      }
+    });
+  });
+
+  function enquire(product) {
+    var msg = '🔵 *CLASSIC-P Series Enquiry*\n\n🚿 *Product:* ' + product + '\n\nPlease send me more details and pricing.';
+    window.open('https://wa.me/918306543264?text=' + encodeURIComponent(msg), '_blank');
+  }
+</script>
+</body>
+</html>

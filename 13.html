@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ – FlowGem Industries</title>
+  <link rel="icon" type="image/png" href="image/.LOGO.png" />
+  <link rel="shortcut icon" href="image/.LOGO.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Poppins', sans-serif; background: #f5f7fa; color: #111827; }
+
+    /* ===== HEADER ===== */
+    .faq-header {
+      background: linear-gradient(135deg, #060f1e 0%, #0f2a4a 55%, #1a3d63 100%);
+      padding: 60px 24px 70px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 5px solid #c8973a;
+    }
+    .faq-header::before {
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
+      background: rgba(200,151,58,0.07);
+      border-radius: 50%;
+      top: -200px; right: -100px;
+      pointer-events: none;
+    }
+    .back-btn {
+      position: absolute;
+      top: 20px; left: 20px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #fff;
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.3s;
+      z-index: 10;
+    }
+    .back-btn:hover { background: rgba(255,255,255,0.22); }
+    .faq-header .badge {
+      display: inline-block;
+      background: rgba(200,151,58,0.18);
+      color: #c8973a;
+      border: 1px solid rgba(200,151,58,0.4);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      border-radius: 50px;
+      margin-bottom: 16px;
+    }
+    .faq-header h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .faq-header h1 span { color: #c8973a; }
+    .faq-header p {
+      color: rgba(255,255,255,0.7);
+      font-size: 1rem;
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ===== MAIN ===== */
+    .faq-main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+    }
+
+    /* ===== CATEGORY TABS ===== */
+    .faq-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 40px;
+      justify-content: center;
+    }
+    .faq-tab {
+      padding: 8px 20px;
+      border-radius: 50px;
+      border: 1.5px solid #d1d5db;
+      background: #fff;
+      color: #374151;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .faq-tab:hover, .faq-tab.active {
+      background: #0f2a4a;
+      color: #fff;
+      border-color: #0f2a4a;
+    }
+
+    /* ===== SECTION TITLE ===== */
+    .faq-section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 40px 0 20px;
+    }
+    .faq-section-title i {
+      width: 40px; height: 40px;
+      background: #0f2a4a;
+      color: #c8973a;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .faq-section-title h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #0f2a4a;
+    }
+
+    /* ===== ACCORDION ===== */
+    .faq-group { display: flex; flex-direction: column; gap: 12px; }
+    .faq-item {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(15,42,74,0.06);
+      transition: box-shadow 0.3s;
+    }
+    .faq-item:hover { box-shadow: 0 4px 20px rgba(15,42,74,0.12); }
+    .faq-item.open { border-color: #0f2a4a; }
+    .faq-q {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 22px;
+      cursor: pointer;
+      gap: 16px;
+      user-select: none;
+    }
+    .faq-q span {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #111827;
+      line-height: 1.5;
+    }
+    .faq-item.open .faq-q span { color: #0f2a4a; }
+    .faq-icon {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: #f3f4f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.75rem;
+      color: #6b7280;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .faq-item.open .faq-icon {
+      background: #0f2a4a;
+      color: #fff;
+      transform: rotate(45deg);
+    }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.3s;
+      padding: 0 22px;
+    }
+    .faq-item.open .faq-a {
+      max-height: 400px;
+      padding: 0 22px 18px;
+    }
+    .faq-a p {
+      font-size: 0.88rem;
+      color: #4b5563;
+      line-height: 1.75;
+    }
+    .faq-a ul {
+      margin: 8px 0 0 18px;
+      font-size: 0.88rem;
+      color: #4b5563;
+      line-height: 1.8;
+    }
+    .faq-a .highlight {
+      display: inline-block;
+      background: #fef3c7;
+      color: #92400e;
+      font-weight: 600;
+      padding: 1px 8px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+    }
+
+    /* ===== CONTACT CTA ===== */
+    .faq-cta {
+      margin-top: 60px;
+      background: linear-gradient(135deg, #060f1e, #0f2a4a);
+      border-radius: 16px;
+      padding: 40px 32px;
+      text-align: center;
+      color: #fff;
+    }
+    .faq-cta h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 10px; }
+    .faq-cta h3 span { color: #c8973a; }
+    .faq-cta p { color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-bottom: 24px; line-height: 1.7; }
+    .cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #c8973a; color: #fff;
+      padding: 12px 26px; border-radius: 50px;
+      font-family: 'Poppins', sans-serif; font-size: 0.9rem; font-weight: 600;
+      text-decoration: none; transition: background 0.3s;
+    }
+    .btn-primary:hover { background: #b07d2a; }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: #fff;
+      border: 2px solid rgba(255,255,255,0.35);
+      padding: 12px 26px; border-radius: 50px;
+      font-family: 'Poppins', sans-serif; font-size: 0.9rem; font-weight: 600;
+      text-decoration: none; transition: border-color 0.3s, background 0.3s;
+    }
+    .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+
+    /* ===== FOOTER ===== */
+    .faq-footer {
+      background: #060f1e;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 20px 24px;
+      font-size: 0.82rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .faq-footer a { color: #c8973a; text-decoration: none; }
+
+    @media (max-width: 600px) {
+      .faq-main { padding: 40px 16px 60px; }
+      .faq-q { padding: 14px 16px; }
+      .faq-item.open .faq-a { padding: 0 16px 14px; }
+      .faq-cta { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <div class="faq-header">
+    <a href="1.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+    <div class="badge">Help Center</div>
+    <h1>Frequently Asked <span>Questions</span></h1>
+    <p>Everything you need to know about FlowGem products, warranty, installation, and more.</p>
+  </div>
+
+  <!-- ===== CONTENT ===== -->
+  <div class="faq-main">
+
+    <!-- TABS -->
+    <div class="faq-tabs">
+      <button class="faq-tab active" onclick="filterFAQ('all', this)">All</button>
+      <button class="faq-tab" onclick="filterFAQ('product', this)">Products</button>
+      <button class="faq-tab" onclick="filterFAQ('warranty', this)">Warranty</button>
+      <button class="faq-tab" onclick="filterFAQ('install', this)">Installation</button>
+      <button class="faq-tab" onclick="filterFAQ('order', this)">Orders & Delivery</button>
+      <button class="faq-tab" onclick="filterFAQ('material', this)">Material & Safety</button>
+    </div>
+
+    <!-- PRODUCTS -->
+    <div class="faq-section" data-cat="product">
+      <div class="faq-section-title">
+        <i class="fa-solid fa-box-open"></i>
+        <h2>Products</h2>
+      </div>
+      <div class="faq-group">
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFAQ(this)">
+            <span>What product series does FlowGem offer?</span>
+            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+          </div>
+          <div class="faq-a">
+            <p>FlowGem offers 8 product series:</p>
+            <ul>
+              <li><strong>Ludo Promo</strong> – Budget-friendly bib cocks (13 variants)</li>
+              <li><strong>Ludo Prime</strong> – Premium bib cock range (12 variants)</li>
+              <li><strong>Classic-M</strong> – Classic metal-feel taps (11 variants)</li>
+              <li><strong>Classic-P / Classic-T</strong> – PTMT pillar & T-handle taps (5 variants each)</li>
+              <li><strong>Royal</strong> – Designer premium series (14 variants)</li>
+              <li><strong>Fusion</strong> – Modern fusion series (14 variants)</li>
+              <li><strong>Gem of Bath & Accessories</strong> – Health faucets & bath accessories (27 variants)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFAQ(this)">
+            <span>Are FlowGem products available in different finishes?</span>
+            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+          </div>
+          <div class="faq-a">
+            <p>Yes. Depending on the series, FlowGem taps are available in Chrome, White, Grey, and Gold finishes. Each series page shows the available colour variants.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFAQ(this)">
+            <span>What is the difference between Ludo Promo and Ludo Prime?</span>
+            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+          </div>
+          <div class="faq-a">
+            <p><strong>Ludo Promo</strong> is our entry-level value series designed for budget-conscious buyers. <strong>Ludo Prime</strong> is the upgraded version with a heavier body, stronger cartridge, and a more premium finish — ideal for mid-to-high-end residential projects.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- WARRANTY -->
+    <div class="faq-section" data-cat="warranty">
+      <div class="faq-section-title">
+        <i class="fa-solid fa-shield-halved"></i>
+        <h2>Warranty</h2>
+      </div>
+      <div class="faq-group">
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFAQ(this)">
+            <span>What is FlowGem's warranty period?</span>
+            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+          </div>
+          <div class="faq-a">
+            <p>All FlowGem products come with a <span class="highlight">36-Month (3 Year)</span> warranty from the date of purchase, covering manufacturing defects in material and workmanship.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFAQ(this)">
+            <span>What does the warranty cover?</span>
+            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+          </div>
+          <div class="faq-a">
+            <p>The warranty covers:</p>
+            <ul>
+              <li>Manufacturing defects in the body, cartridge, or fittings</li>
+              <li>Premature failure under normal use conditions</li>
+              <li>Leakage due to faulty components (not installation errors)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFAQ(this)">
+            <span>What is NOT covered under warranty?</span>
+            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+          </div>
+          <div class="faq-a">
+            <p>The warranty does not cover:</p>
+            <ul>
+              <li>Damage due to improper installation</li>
+              <li>Damage caused by misuse, accidents, or negligence</li>
+              <li>Normal wear and tear (rubber washers, O-rings)</li>
+              <li>Damage due to excessive water pressure or chemical exposure</li>
+              <li>Cosmetic damage like scratches after installation</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFAQ(this)">
+            <span>How do I claim warranty?</span>
+            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+          </div>
+          <div class="faq-a">
+            <p>To claim warranty, contact us via:</p>
+            <ul>
+              <li>WhatsApp: <strong>+91 83065 43264</strong></li>
+              <li>Email: <strong>info@flowgem.in</strong></li>
+            </ul>
+            <p style="margin-top:8px;">Please keep your purchase bill/invoice ready. Our team will assess and resolve the issue — either through spare parts or product replacement.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFAQ(this)">
+            <span>Are spare parts available after warranty expires?</span>
+            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+          </div>
+          <div class="faq-a">
+            <p>Yes. FlowGem spare parts (cartridges, washers, aerators) are available pan-India through our dealer network even after the warranty period. Contact your nearest dealer or reach us directly.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- INSTALLATION -->
+    <div class="faq-section" data-cat="install">
+      <div class="faq-section-title">
+        <i class="fa-solid fa-screwdriver-wrench"></i>
+        <h2>Installation</h2>
+      </div>
+      <div class="faq-group">
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFAQ(this)">
+            <span>Can I install FlowGem taps myself?</span>
+            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+          </div>
+          <div class="faq-a">
+            <p>FlowGem taps use universal fitting standards, making them compatible with standard Indian plumbing. Basic models like bib cocks and pillar taps can be installed by an experienced plumber easily. We recommend professional installation for wall mixers and shower sets.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFAQ(this)">
+            <span>What is the recommended water pressure for FlowGem products?</span>
+            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+          </div>
+          <div class="faq-a">
+            <p>FlowGem products are tested to work optimally at <span class="highlight">0.5 – 5 bar</span> water pressure. We recommend using a pressure regulator if your supply exceeds 5 bar to avoid premature wear.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFAQ(this)">
+            <span>Is an installation guide available?</span>
+            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+          </div>
+          <div class="faq-a">
+            <p>Yes. Each product comes with a basic installation leaflet in the box. For detailed guides, contact us on WhatsApp at <strong>+91 83065 43264</strong> and we'll share the PDF guide for your specific model.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ORDERS & DELIVERY -->
+    <div class="faq-section" data-cat="order">
+      <div class="faq-section-title">
+        <i class="fa-solid fa-truck-fast"></i>
+        <h2>Orders & Delivery</h2>
+      </div>
+      <div class="faq-group">
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFAQ(this)">
+            <span>How can I place a bulk order?</span>
+            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+          </div>
+          <div class="faq-a">
+            <p>For bulk orders and dealer pricing, reach us via:</p>
+            <ul>
+              <li>WhatsApp: <strong>+91 83065 43264</strong></li>
+              <li>Email: <strong>info@flowgem.in</strong></li>
+              <li>Or fill the <a href="1.html#contact" style="color:#0f2a4a;font-weight:600;">Contact Form</a> on our website</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFAQ(this)">
+            <span>Do you deliver pan-India?</span>
+            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+          </div>
+          <div class="faq-a">
+            <p>Yes. FlowGem delivers to <span class="highlight">20+ states</span> across India through our established logistics and dealer network. Delivery timelines vary by location — typically 3–7 business days.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFAQ(this)">
+            <span>Can I download a product catalogue?</span>
+            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+          </div>
+          <div class="faq-a">
+            <p>Yes. WhatsApp us at <strong>+91 83065 43264</strong> and request the latest product catalogue. We'll send you the PDF with all product codes, sizes, and pricing.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- MATERIAL & SAFETY -->
+    <div class="faq-section" data-cat="material">
+      <div class="faq-section-title">
+        <i class="fa-solid fa-flask-vial"></i>
+        <h2>Material & Safety</h2>
+      </div>
+      <div class="faq-group">
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFAQ(this)">
+            <span>What is PTMT and why is it better than brass?</span>
+            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+          </div>
+          <div class="faq-a">
+            <p>PTMT (Poly Tetra Methylene Terephthalate) is an engineering-grade polymer. Compared to brass, PTMT is:</p>
+            <ul>
+              <li><strong>100% lead-free</strong> — safe for drinking water</li>
+              <li><strong>Rust-free</strong> — no corrosion over time</li>
+              <li><strong>Lighter</strong> — easier to install</li>
+              <li><strong>More affordable</strong> — no raw material price volatility</li>
+              <li><strong>Eco-friendly</strong> — fully recyclable</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFAQ(this)">
+            <span>Are FlowGem products safe for drinking water lines?</span>
+            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+          </div>
+          <div class="faq-a">
+            <p>Absolutely. All FlowGem PTMT products are <span class="highlight">100% lead-free</span> and free from heavy metals. They are third-party lab tested and safe for direct use on drinking water supply lines.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFAQ(this)">
+            <span>Are your products BIS / ISI certified?</span>
+            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+          </div>
+          <div class="faq-a">
+            <p>Yes. FlowGem products carry the <strong>BIS / ISI Mark</strong> and the company holds an <strong>ISO certification</strong> for its quality management system across manufacturing and supply chain operations.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="faq-cta">
+      <h3>Still have a <span>question?</span></h3>
+      <p>Our team is available Mon–Sat, 9 AM to 6 PM. Reach out and we'll get back to you quickly.</p>
+      <div class="cta-btns">
+        <a href="https://wa.me/918306543264" class="btn-primary" target="_blank">
+          <i class="fa-brands fa-whatsapp"></i> WhatsApp Us
+        </a>
+        <a href="1.html#contact" class="btn-outline">
+          <i class="fa-solid fa-paper-plane"></i> Send Enquiry
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <div class="faq-footer">
+    <p>&copy; 2026 FlowGem Industries. All rights reserved. &nbsp;|&nbsp; <a href="1.html">Home</a> &nbsp;|&nbsp; <a href="aboutus.html">About Us</a> &nbsp;|&nbsp; <a href="1.html#contact">Contact</a></p>
+  </div>
+
+  <a href="https://wa.me/918306543264" class="whatsapp-float" style="position:fixed;bottom:28px;right:28px;width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.6rem;text-decoration:none;box-shadow:0 4px 16px rgba(37,211,102,0.4);" target="_blank" aria-label="WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <script>
+    function toggleFAQ(el) {
+      const item = el.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      // close all
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+
+    function filterFAQ(cat, btn) {
+      document.querySelectorAll('.faq-tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.faq-section').forEach(s => {
+        if (cat === 'all' || s.dataset.cat === cat) {
+          s.style.display = '';
+        } else {
+          s.style.display = 'none';
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
