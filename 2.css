@@ -328,9 +328,9 @@ ul { list-style: none; }
   opacity: 0.88;
   letter-spacing: 0.5px;
   vertical-align: middle;
-  color: #c8973a;
+  color: #fff;
 }
-.hero-content h1 .accent { color: #fff; }
+.hero-content h1 .accent { color: #c8973a; }
 .hero-content p {
   font-size: 1.08rem;
   opacity: 0.9;
