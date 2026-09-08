@@ -514,12 +514,13 @@ ul { list-style: none; }
   background: var(--primary-light);
   color: var(--primary);
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 1px;
   text-transform: uppercase;
   padding: 3px 10px;
   border-radius: 50px;
   margin-bottom: 10px;
+  justify-content: center;
 }
 .product-info h3 {
   font-size: 1rem;
@@ -714,10 +715,13 @@ ul { list-style: none; }
   border-radius: var(--radius-sm);
   background: #fff;
   font-family: 'Poppins', sans-serif;
-  font-size: 0.92rem;
+  font-size: 1rem; /* min 16px prevents Android/iOS auto-zoom */
   color: var(--text);
   transition: border-color var(--transition);
   outline: none;
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
 }
 .form-group input:focus,
 .form-group select:focus,
@@ -993,8 +997,13 @@ ul { list-style: none; }
   .btn { padding: 12px 24px; font-size: 0.9rem; width: 100%; justify-content: center; }
   .btn-outline { width: 100%; }
 
-  .products-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-  .product-img { height: 110px; }
+  .products-grid { grid-template-columns: 1fr; gap: 14px; }
+  .product-img { height: 200px; }
+  .series-card-img { height: 200px; padding: 24px; }
+  .product-info { padding: 16px; }
+  .product-info h3 { font-size: 1rem; }
+  .product-info p { font-size: 0.82rem; }
+  .btn-small { font-size: 0.78rem; padding: 8px 14px; }
   .tap-svg { width: 70px; height: 90px; }
 
   .features-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -1006,23 +1015,38 @@ ul { list-style: none; }
 
   .about { padding: 48px 0; }
   .about-card { padding: 18px; }
+  .about-grid { grid-template-columns: 1fr; }
+
   .testimonials { padding: 48px 0; }
   .contact { padding: 48px 0; }
   .contact-form { padding: 16px; }
   .contact-item { padding: 14px; gap: 12px; }
   .map-card iframe { height: 420px; min-height: 420px; }
 
+  /* Footer logos stack vertically */
+  .footer-logo-box { display: block; margin-bottom: 10px; }
+  .footer-jd-box { margin-bottom: 10px; }
   .footer-grid { grid-template-columns: 1fr; }
   .footer { padding: 36px 0 0; }
   .footer-brand p { font-size: 0.82rem; }
+  .footer-bottom { font-size: 0.78rem; gap: 6px; }
 
   /* Nav height fix on small screens */
   .nav-links { top: 60px; padding: 18px 20px; gap: 16px; }
+  .nav-links a { font-size: 1rem; padding: 6px 0; border-bottom: 1px solid rgba(0,0,0,0.06); }
 
   /* Filter tabs scroll on mobile */
   .filter-tabs { flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; padding-bottom: 8px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
   .filter-tabs::-webkit-scrollbar { display: none; }
   .filter-btn { white-space: nowrap; flex-shrink: 0; }
+
+  /* Social links bigger tap targets */
+  .social-links a { width: 44px; height: 44px; font-size: 1.1rem; }
+
+  /* Hero stats */
+  .hero-stats { flex-wrap: wrap; gap: 16px; justify-content: center; }
+  .stat { min-width: 80px; }
+  .stat strong { font-size: 1.4rem; }
 }
 
 /* --- Very small screens (max 360px) --- */
@@ -1031,6 +1055,9 @@ ul { list-style: none; }
   .products-grid { grid-template-columns: 1fr; }
   .features-grid { grid-template-columns: 1fr; }
   .stat strong { font-size: 1.3rem; }
+  .product-info h3 { font-size: 0.92rem; }
+  .btn-small { font-size: 0.72rem; }
+  .footer-logo-img { height: 40px; }
 }
 
 /* ===== SERIES CARD COVER IMAGE ===== */
